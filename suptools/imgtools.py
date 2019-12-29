@@ -12,6 +12,7 @@ import tqdm
 import PIL
 import warnings
 import uuid
+import requests
 
 # Cell
 def download_image(dest, url, timeout=5):
