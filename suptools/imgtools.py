@@ -93,7 +93,7 @@ def verify_images(file_path, n_threads=4, recurse=False):
     Makes use of multiprocessing library to support concurrent verification if supported by CPU.
     Visualizes progress using tqdm.
     """
-    path = Path(file_path)
+    path = pathlib.Path(file_path)
     files = get_all_files(file_path, recurse=recurse)
     for x in tqdm.tqdm_notebook(
         ThreadPool(n_threads).imap_unordered(
