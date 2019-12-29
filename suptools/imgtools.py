@@ -8,11 +8,10 @@ from multiprocessing.pool import ThreadPool
 from functools import partial
 import pathlib
 import urllib
-import re
 import tqdm
 import PIL
-import mimetypes
 import warnings
+import uuid
 
 # Cell
 def download_image(dest, url, timeout=5):

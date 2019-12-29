@@ -54,7 +54,7 @@ summary: "Functions for handling images"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="download_image" class="doc_header"><code>download_image</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>download_image</code>(<strong><code>dest</code></strong>, <strong><code>url</code></strong>, <strong><code>timeout</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="download_image" class="doc_header"><code>download_image</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L17" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>download_image</code>(<strong><code>dest</code></strong>, <strong><code>url</code></strong>, <strong><code>timeout</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Downloads an image from url to destination file path (pathlib.Path object).
 Tries to detect and preserve original suffix and defaults to '.jpg' if none
@@ -91,7 +91,7 @@ Assigns a randomly generated filename to avoid name clashes.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="download_images" class="doc_header"><code>download_images</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>download_images</code>(<strong><code>url_file_path</code></strong>, <strong><code>dest</code></strong>, <strong><code>n_threads</code></strong>=<em><code>4</code></em>, <strong><code>timeout</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="download_images" class="doc_header"><code>download_images</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>download_images</code>(<strong><code>url_file_path</code></strong>, <strong><code>dest</code></strong>, <strong><code>n_threads</code></strong>=<em><code>4</code></em>, <strong><code>timeout</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Downloads images from list of urls.
 Makes use of multiprocessing library to support concurrent downloads if supported by CPU.
@@ -123,7 +123,7 @@ Visualizes progress using tqdm.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="verify_image_tf" class="doc_header"><code>verify_image_tf</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>verify_image_tf</code>(<strong><code>img_file</code></strong>)</p>
+<h4 id="verify_image_tf" class="doc_header"><code>verify_image_tf</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>verify_image_tf</code>(<strong><code>img_file</code></strong>)</p>
 </blockquote>
 <p>Verifies if an image can be opened by tf.image module
 tf.image currently supports only BMP, JPEG, GIF and PNG.
@@ -150,7 +150,7 @@ If the image cannot be opened or converted, it is deleted.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="verify_images" class="doc_header"><code>verify_images</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L90" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>verify_images</code>(<strong><code>file_path</code></strong>, <strong><code>n_threads</code></strong>=<em><code>4</code></em>, <strong><code>recurse</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="verify_images" class="doc_header"><code>verify_images</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/imgtools.py#L89" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>verify_images</code>(<strong><code>file_path</code></strong>, <strong><code>n_threads</code></strong>=<em><code>4</code></em>, <strong><code>recurse</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Verifies images from file path.
 Makes use of multiprocessing library to support concurrent verification if supported by CPU.
