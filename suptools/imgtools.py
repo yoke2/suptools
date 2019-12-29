@@ -3,7 +3,7 @@
 __all__ = ['download_image', 'download_images', 'verify_image_tf', 'verify_images']
 
 # Cell
-from .core import *
+from suptools.core import *
 from multiprocessing.pool import ThreadPool
 from functools import partial
 import pathlib
