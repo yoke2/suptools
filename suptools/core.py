@@ -7,6 +7,10 @@ import pathlib
 
 # Cell
 def get_all_files(file_path, recurse=False):
+    """
+    Returns all files in a directory.
+    Supports return of files from sub-directories if recurse=True is passed.
+    """
     path = pathlib.Path(file_path)
     if recurse:
         tmp = path.rglob('**/*')

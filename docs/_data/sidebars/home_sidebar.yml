@@ -7,24 +7,18 @@ entries:
 - folders:
   - folderitems:
     - output: web,pdf
-      title: Export to modules
-      url: /export.html
+      title: Overview
+      url: /
     - output: web,pdf
-      title: Convert to html
-      url: /export2html.html
+      title: Core Functions
+      url: /core
     - output: web,pdf
-      title: Show doc
-      url: /showdoc.html
+      title: imgtools
+      url: /imgtools
     - output: web,pdf
-      title: Test functions
-      url: /test.html
-    - output: web,pdf
-      title: Core functions
-      url: /core.html
-    - output: web,pdf
-      title: Command line functions
-      url: /cli.html
+      title: tftools
+      url: /tftools
     output: web
-    title: Notebook
+    title: suptools
   output: web
   title: Sidebar

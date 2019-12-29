@@ -16,6 +16,11 @@ import warnings
 
 # Cell
 def download_image(dest, url, timeout=5):
+    """
+    Downloads an image from url to destination file path (pathlib.Path object).
+    Tries to detect and preserve original suffix and defaults to '.jpg' if none
+    Assigns a randomly generated filename to avoid name clashes.
+    """
     tmp = urllib.parse.urlparse(url)
     suffix = pathlib.Path(tmp.path).suffix
     if suffix == '':
@@ -40,6 +45,11 @@ def download_image(dest, url, timeout=5):
 
 # Cell
 def download_images(url_file_path, dest, n_threads=4, timeout=5):
+    """
+    Downloads images from list of urls.
+    Makes use of multiprocessing library to support concurrent downloads if supported by CPU.
+    Visualizes progress using tqdm.
+    """
     urls = pathlib.Path(url_file_path).read_text().strip().split("\n")
     dest = pathlib.Path(dest)
     dest.mkdir(exist_ok=True, parents=True)
@@ -53,28 +63,36 @@ def download_images(url_file_path, dest, n_threads=4, timeout=5):
 
 # Cell
 def verify_image_tf(img_file):
+    """
+    Verifies if an image can be opened by tf.image module
+    tf.image currently supports only BMP, JPEG, GIF and PNG.
+    Function attempts to convert non-supported formats to JPEG.
+    If the image cannot be opened or converted, it is deleted.
+    """
     try:
-        with warnings.catch_warnings():
-            warnings.filterwarnings('error')
-            import tensorflow as tf
-            import PIL
-            suffix = img_file.suffix
-            if suffix.lower() not in ['.bmp', '.jpeg', '.jpg', '.gif', '.png']:
-                # attempt conversion to supported formats
-                warnings.simplefilter("ignore")
-                renamed = img_file.parent/f'{img_file.name+".jpg"}'
-                PIL.Image.open(img_file).save(renamed, "JPEG")
-                img_file.unlink()
-                print(f"File converted: {renamed}")
-                img_file = renamed
-            img = tf.io.read_file(str(img_file))
-            img = tf.image.decode_image(img, channels=3, expand_animations=False)
+        import tensorflow as tf
+        import PIL
+        warnings.simplefilter("ignore")
+        suffix = img_file.suffix
+        if suffix.lower() not in ['.bmp', '.jpeg', '.jpg', '.gif', '.png']:
+            renamed = img_file.parent/f'{img_file.name+".jpg"}'
+            PIL.Image.open(img_file).save(renamed, "JPEG")
+            img_file.unlink()
+            print(f"File converted: {renamed}")
+            img_file = renamed
+        img = tf.io.read_file(str(img_file))
+        img = tf.image.decode_image(img, channels=3, expand_animations=False)
     except Exception as e:
         print(f'Failed: Deleting {str(img_file)}: {e}')
         img_file.unlink()
 
 # Cell
 def verify_images(file_path, n_threads=4, recurse=False):
+    """
+    Verifies images from file path.
+    Makes use of multiprocessing library to support concurrent verification if supported by CPU.
+    Visualizes progress using tqdm.
+    """
     path = Path(file_path)
     files = get_all_files(file_path, recurse=recurse)
     for x in tqdm.tqdm_notebook(
