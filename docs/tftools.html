@@ -292,10 +292,11 @@ Requires tensorflow-addons that currently supports MacOS and Linux only.</p>
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="process_img_bytes" class="doc_header"><code>process_img_bytes</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/tftools.py#L101" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>process_img_bytes</code>(<strong><code>img_bytes</code></strong>, <strong><code>img_size</code></strong>=<em><code>224</code></em>, <strong><code>augments</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
-<p>process single image in int-byte form for use with keras model.predict()</p>
+<p>Process single image in int-byte form for use with keras model.predict()</p>
 <ul>
-<li>read and decode using tf.image</li>
-<li>expects one augmentation function list</li>
+<li>read with in raw file bytes with functions like tf.io.read_file</li>
+<li>decode using tf.image</li>
+<li>supports one augmentation function list, typically for validation</li>
 </ul>
 
 </div>
@@ -318,13 +319,13 @@ Requires tensorflow-addons that currently supports MacOS and Linux only.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_img_dataset" class="doc_header"><code>read_img_dataset</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/tftools.py#L119" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_img_dataset</code>(<strong><code>file_paths</code></strong>, <strong><code>CLASS_NAMES</code></strong>=<em><code>None</code></em>, <strong><code>shuffle_size</code></strong>=<em><code>None</code></em>, <strong><code>img_size</code></strong>=<em><code>224</code></em>, <strong><code>batch_size</code></strong>=<em><code>32</code></em>, <strong><code>n_parallel</code></strong>=<em><code>4</code></em>, <strong><code>augments</code></strong>=<em><code>None</code></em>, <strong><code>mode</code></strong>=<em><code>'train'</code></em>)</p>
+<h4 id="read_img_dataset" class="doc_header"><code>read_img_dataset</code><a href="https://github.com/yoke2/suptools/tree/master/suptools/tftools.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_img_dataset</code>(<strong><code>file_paths</code></strong>, <strong><code>CLASS_NAMES</code></strong>=<em><code>None</code></em>, <strong><code>shuffle_size</code></strong>=<em><code>None</code></em>, <strong><code>img_size</code></strong>=<em><code>224</code></em>, <strong><code>batch_size</code></strong>=<em><code>32</code></em>, <strong><code>n_parallel</code></strong>=<em><code>4</code></em>, <strong><code>augments</code></strong>=<em><code>None</code></em>, <strong><code>mode</code></strong>=<em><code>'train'</code></em>)</p>
 </blockquote>
 <p>Image dataset reader for tf.data.Dataset</p>
 <ul>
 <li>get files from folder/list of Pathlib objects</li>
-<li>modes of operation: train, valid, test, predict</li>
-<li>cache for all modes except when mode=predict</li>
+<li>modes of operation: train, valid, test</li>
+<li>cache for all modes using local disk cache with mode as name of cache</li>
 <li>only shuffle if mode=train. shuffle expects a shuffle size</li>
 </ul>
 

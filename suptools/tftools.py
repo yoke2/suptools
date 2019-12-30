@@ -100,15 +100,17 @@ def process_img_path(file_path, CLASS_NAMES=None, img_size=224, augments=None, m
 # Cell
 def process_img_bytes(img_bytes, img_size=224, augments=None):
     """
-    process single image in int-byte form for use with keras model.predict()
-    - read and decode using tf.image
-    - expects one augmentation function list
+    Process single image in int-byte form for use with keras model.predict()
+    - read with in raw file bytes with functions like tf.io.read_file
+    - decode using tf.image
+    - supports one augmentation function list, typically for validation
     """
     try:
         img = tf.image.decode_image(img_bytes, channels=3, expand_animations=False)
         img = tf.image.convert_image_dtype(img, tf.float32)
-        for f in augments:
-            img = f(img)
+        if augments is not None:
+            for f in augments:
+                img = f(img)
             img = tf.clip_by_value(img, 0, 1)
         img = tf.image.resize(img, [img_size, img_size])
     except Exception as e:
@@ -120,8 +122,8 @@ def read_img_dataset(file_paths, CLASS_NAMES=None, shuffle_size=None, img_size=2
     """
     Image dataset reader for tf.data.Dataset
     - get files from folder/list of Pathlib objects
-    - modes of operation: train, valid, test, predict
-    - cache for all modes except when mode=predict
+    - modes of operation: train, valid, test
+    - cache for all modes using local disk cache with mode as name of cache
     - only shuffle if mode=train. shuffle expects a shuffle size
     """
     ds = tf.data.Dataset.list_files(file_paths)
@@ -130,8 +132,6 @@ def read_img_dataset(file_paths, CLASS_NAMES=None, shuffle_size=None, img_size=2
                         img_size=img_size,
                         augments=augments,
                         mode=mode), num_parallel_calls=n_parallel)
-    if mode != 'predict':
-        ds = ds.cache(mode)
     if mode == 'train':
         ds = ds.shuffle(shuffle_size)
     ds = ds.repeat()
