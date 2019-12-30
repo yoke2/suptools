@@ -13,8 +13,8 @@ def get_all_files(file_path, recurse=False):
     """
     path = pathlib.Path(file_path)
     if recurse:
-        tmp = path.rglob('**/*')
+        tmp = path.rglob('*')
     else:
-        tmp = path.glob('**/*')
+        tmp = path.glob('*')
     all_files = [x for x in tmp if x.is_file()]
     return all_files
