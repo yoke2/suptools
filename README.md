@@ -1,4 +1,3 @@
-
 <!--
 
 #################################################
@@ -21,20 +20,18 @@
 
 ## Dependencies
 
-You will notice that there are only minimal packages required by default. Use of other modules/functions will require additional dependencies as follows.
+You will notice that there are needed packages per module but minimal dependencies specified.
   
-Requirements
-- core
-    - pathlib
-
-Additional Requirements
+Additional packages needed
 - imgtools
     - requests
     - pillow
     - tqdm
-    - tensorflow>=2.0.0
+    - tensorflow==2.0.0
 - tftools
-    - tensorflow>=2.0.0
+    - matplotlib
+    - tensorflow==2.0.0
+    - tensorflow-addons
 
 ## How to use and References
 
