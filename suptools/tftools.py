@@ -132,6 +132,7 @@ def read_img_dataset(file_paths, CLASS_NAMES=None, shuffle_size=None, img_size=2
                         img_size=img_size,
                         augments=augments,
                         mode=mode), num_parallel_calls=n_parallel)
+    ds = ds.cache(mode)
     if mode == 'train':
         ds = ds.shuffle(shuffle_size)
     ds = ds.repeat()
